@@ -78,12 +78,15 @@ def main(linker, namer):
         if e == "":
             print("There is an error or channel is blocked!")
         else:
+            e.pop(2) # Remove None
+            e.pop(0)
             selec = fzf.prompt(e)
             nsele = selec[0]
             num = e.index(nsele)
             with open(".tmp/llist.txt", 'rt') as sv:
                 global link
                 e = sv.read().splitlines()
+                e.pop(0)
                 link = e[num]
             menusel = ['Play it (Linux)', 'Download video', 'Download audio', 'Play audio in Termux', 'Play video in Termux VNC', 'Share Link']
             getvideo = fzf.prompt(menusel)
